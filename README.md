@@ -15,6 +15,7 @@ Discord's [Applications page](https://discordapp.com/developers/applications/) n
 * .NET Framework 4.5+ (4.6.1 recommended)
 * Newtonsoft.Json (11.0.2+ recommended)
 * (already built as DiscordRPC.dll) [discord-rpc-csharp by Lachee](https://github.com/Lachee/discord-rpc-csharp)
+* ILMerge
 
 ## Usage
 
