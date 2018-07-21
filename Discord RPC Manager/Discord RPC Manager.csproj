@@ -101,7 +101,6 @@
   <ItemGroup>
     <Content Include="DiscordRPC.dll" />
     <Content Include="icon.ico" />
-    <Content Include="ico_Discord-Logo+Wordmark-Black.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
