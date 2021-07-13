@@ -1,60 +1,99 @@
 ﻿using System;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Discord_RPC_Manager
 {
     static class Program
     {
-        public static dynamic Settings { get; set; }
+        public class DiscordApplication
+        {
+            public string Id { get; set; }
+            public string Icon { get; set; }
+            public string Name { get; set; }
+            public List<Asset> Assets { get; set; }
+        }
+
+        public class Asset
+        {
+            public string Name { get; set; }
+            public string Icon { get; set; }
+        }
+
+        public class Preset
+        {
+            public string Name { get; set; }
+            public string AppId { get; set; }
+            public string Details { get; set; }
+            public string State { get; set; }
+            public string LargeKey { get; set; }
+            public string LargeText { get; set; }
+            public string SmallKey { get; set; }
+            public string SmallText { get; set; }
+        }
+
+        public static readonly string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Discord RPC Manager");
+        public static readonly string appIconsPath = Path.Combine(appDataPath, "AppIcons");
+        public static readonly string applicationsJsonPath = Path.Combine(appDataPath, "applications.json");
+        public static readonly string presetsJsonPath = Path.Combine(appDataPath, "presets.json");
+        public static List<DiscordApplication> Applications;
+        public static List<Preset> Presets;
+
 
         [STAThread]
         static void Main()
         {
-            /*bool debugMode = true;
+            // Create folder structure
+            Directory.CreateDirectory(appDataPath);
+            Directory.CreateDirectory(appIconsPath);
 
-            if (debugMode && File.Exists("settings.json"))
+
+            // Create save data, if missing
+            if (!File.Exists(applicationsJsonPath))
+                File.WriteAllText(applicationsJsonPath, "[]");
+
+            if (!File.Exists(presetsJsonPath))
             {
-                File.Delete("settings.json");
-            }*/
+                Preset newPreset = new Preset
+                {
+                    Name = "New",
+                    AppId = "",
+                    Details = "",
+                    State = "",
+                    LargeKey = "",
+                    LargeText = "",
+                    SmallKey = "",
+                    SmallText = ""
+                };
 
-            if (!File.Exists("settings.json"))
-            {
-                Settings = JObject.Parse("{}");
-                CreateSettingsSubKey(0);
-
-                SaveSettings();
+                File.WriteAllText(presetsJsonPath, JsonConvert.SerializeObject(new Preset[1] { newPreset }));
             }
-            else
-            {
-                string read = File.ReadAllText("settings.json");
-                Settings = JObject.Parse(read);
-            }
 
+
+            // Load save data
+            string jsonApplications = File.ReadAllText(applicationsJsonPath);
+            Applications = JsonConvert.DeserializeObject<List<DiscordApplication>>(jsonApplications);
+            Applications.Sort((a, b) => a.Name.CompareTo(b.Name));
+
+            string jsonPresets = File.ReadAllText(presetsJsonPath);
+            Presets = JsonConvert.DeserializeObject<List<Preset>>(jsonPresets);
+
+
+            // Run
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
 
 
-        public static void SaveSettings()
+        public static void SaveData()
         {
-            File.WriteAllText("settings.json", JsonConvert.SerializeObject(Settings));
-        }
-
-        public static void CreateSettingsSubKey(int index)
-        {
-            Settings[index.ToString()] = JObject.Parse("{}");
-            Settings[index.ToString()].name = "New";
-            Settings[index.ToString()].cid = "";
-            Settings[index.ToString()].details = "";
-            Settings[index.ToString()].state = "";
-            Settings[index.ToString()].lkey = "";
-            Settings[index.ToString()].lname = "";
-            Settings[index.ToString()].skey = "";
-            Settings[index.ToString()].sname = "";
+            //File.WriteAllText(applicationsJsonPath, JsonSerializer.Serialize(Applications));
+            //File.WriteAllText(presetsJsonPath, JsonSerializer.Serialize(Presets));
+            File.WriteAllText(applicationsJsonPath, JsonConvert.SerializeObject(Applications));
+            File.WriteAllText(presetsJsonPath, JsonConvert.SerializeObject(Presets));
         }
     }
 }

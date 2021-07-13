@@ -11,6 +11,9 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,21 +41,24 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DiscordRPC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DiscordRPC.dll</HintPath>
+    <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.864.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.864.35\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.864.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.864.35\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.864.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.864.35\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Interactive.Async, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Interactive.Async.3.1.1\lib\net46\System.Interactive.Async.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,16 +70,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AppCreationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AppCreationForm.Designer.cs">
+      <DependentUpon>AppCreationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppEditingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppEditingForm.Designer.cs">
+      <DependentUpon>AppEditingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppImportForm.Designer.cs">
+      <DependentUpon>AppImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssetManagerForm.Designer.cs">
+      <DependentUpon>AssetManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AppCreationForm.resx">
+      <DependentUpon>AppCreationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppEditingForm.resx">
+      <DependentUpon>AppEditingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppImportForm.resx">
+      <DependentUpon>AppImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssetManagerForm.resx">
+      <DependentUpon>AssetManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,6 +134,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -104,20 +156,17 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rem Create a single .exe that combines the root .exe and all subassemblies.
-"$(SolutionDir)ILMerge\ILMerge.exe" /out:"$(TargetDir)$(TargetName).all.exe" "$(TargetDir)$(TargetName).exe" "$(TargetDir)*.dll" /target:winexe /targetplatform:v4,C:\Windows\Microsoft.NET\Framework64\v4.0.30319 /wildcards
-rem Remove all subassemblies.
-del *.dll
-rem Remove all .pdb files (except the new, combined pdb we just created).
-ren "$(TargetDir)$(TargetName).all.pdb" "$(TargetName).all.pdb.temp"
-del *.pdb
+    <PostBuildEvent>del *.pdb
 del *.xml
-ren "$(TargetDir)$(TargetName).all.pdb.temp" "$(TargetName).all.pdb"
-rem Delete the original, non-combined .exe.
-del "$(TargetDir)$(TargetName).exe"
-rem Rename the combined .exe and .pdb to the original project name we started with.
-ren "$(TargetDir)$(TargetName).all.pdb" "$(TargetName).pdb"
-ren "$(TargetDir)$(TargetName).all.exe" "$(TargetName).exe"
-exit 0</PostBuildEvent>
+rem del *.exe.config
+move /Y "$(TargetDir)runtimes\win-x86\native\WebView2Loader.dll" "$(TargetDir)"
+rmdir /S /Q "$(TargetDir)runtimes"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.864.35\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.864.35\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.864.35\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.864.35\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
 </Project>
